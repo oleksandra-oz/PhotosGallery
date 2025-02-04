@@ -1,0 +1,23 @@
+.buttonload {
+  background-color: #e7baeb;
+  color: rgb(31, 26, 26);
+  border: none;
+  padding: 10px 20px;
+  margin-top: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.buttonload:hover {
+  background-color: #da8cf1;
+}
+
+.buttonload:active {
+  transform: scale(0.95); /* Легке зменшення при натисканні */
+}
+.buttonload:disabled {
+  background-color: #fff0f5;
+}

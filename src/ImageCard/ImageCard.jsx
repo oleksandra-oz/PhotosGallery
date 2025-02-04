@@ -1,13 +1,22 @@
 import s from "./ImageCard.module.css";
-import Emoji from "react-emoji-render";
 
-export default function ImageCard({ description, urls, likes }) {
+export default function ImageCard({
+  description,
+  urls,
+  likes,
+  user,
+  openModal,
+}) {
   return (
     <div>
-      <img className={s.imgcard} src={urls.small} alt={description} />
-      <Emoji>
-        <p>Likes: ❤️{likes}</p>
-      </Emoji>
+      <img
+        className={s.imgcard}
+        src={urls.small}
+        alt={description}
+        onClick={() =>
+          openModal(urls.regular, description, likes, user.username)
+        }
+      />
     </div>
   );
 }

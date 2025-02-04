@@ -1,0 +1,34 @@
+.buttonsearch {
+  background-color: #e7baeb; /* Синій колір */
+  color: rgb(31, 26, 26); /* Білий текст */
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 8px; /* Закруглені краї */
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.buttonsearch:hover {
+  background-color: #da8cf1; /* Темніший синій при наведенні */
+}
+
+.buttonsearch:active {
+  transform: scale(0.95); /* Легке зменшення при натисканні */
+}
+.inputsearch {
+  background: #f6f2f2;
+  border: none;
+  box-shadow: inset 0 1px 3px rgba(207, 1, 1, 0.1);
+  margin-right: 20px;
+  width: 100%; /* Розтягується на всю ширину */
+  max-width: 400px; /* Обмеження максимальної ширини */
+  padding: 10px 15px;
+  font-size: 16px;
+}
+
+.inputsearch:focus {
+  background: rgb(255, 255, 255);
+  border: 1px solid #52081b;
+}

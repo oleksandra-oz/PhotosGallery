@@ -4,6 +4,23 @@
   padding: 2rem;
   text-align: center;
 }
+header {
+  position: fixed; /* Фіксує заголовок зверху */
+  top: 0; /* Закріплює його на вершині */
+  left: 0;
+  width: 100%; /* Розтягує на всю ширину */
+  background-image: url("https://th.bing.com/th/id/R.74f6170934831a6c499ee2eb791dcf1c?rik=2UmCFQzUY1GOFw&riu=http%3a%2f%2fstatic1.squarespace.com%2fstatic%2f53b4d49de4b00894c69c7a0c%2ft%2f53f55c62e4b09b353f81ef9b%2f1408588898855%2fPink%2bWatercolor%2bWallpaper_Pixejoo.jpg&ehk=7qgcRv41MH3UAcuA%2bGwtH9TPAVd01qe%2b2AQ%2fiZ44y%2fk%3d&risl=&pid=ImgRaw&r=0"); /* Шлях до зображення */
+  background-size: cover; /* Розтягує зображення, щоб покрити весь header */
+  background-position: center; /* Центрує зображення */
+  background-repeat: no-repeat;
+  /z-index: 1000; /* Забезпечує відображення над іншими елементами */
+  padding: 10px 20px; /* Відступи для кращого вигляду */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Додає тінь */
+}
+body {
+  padding-top: 60px; /* Додайте висоту вашого header */
+  background-color: #fff0f5;
+}
 
 .logo {
   height: 6em;

@@ -4,6 +4,11 @@ import SearchBar from "./SearchBar/SearchBar";
 import axios from "axios";
 import { API_KEY } from "./api.js";
 import ImageGallery from "./ImageGallery/ImageGallery.jsx";
+import LoadMoreBtn from "./LoadMoreBtn/LoadMoreBtn.jsx";
+import ImageModal from "./ImageModal/ImageModal.jsx";
+import { Toaster } from "react-hot-toast";
+import Loader from "./Loader/Loader";
+import ErrorMessage from "./ErrorMessage/ErrorMessage";
 
 function App() {
   const [query, setQuery] = useState("");
@@ -13,6 +18,12 @@ function App() {
   const [images, setImages] = useState([]);
   const [isEmpty, setIsEmpty] = useState(false);
   const [perPage, setPerPage] = useState(1);
+  const [isVisible, setIsVisible] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalSrc, setModalSrc] = useState("");
+  const [modalAlt, setModalAlt] = useState("");
+  const [modalLikes, setModalLikes] = useState(null);
+  const [modalUser, setModalUser] = useState(null);
 
   useEffect(() => {
     if (!query) return;
@@ -25,13 +36,13 @@ function App() {
             `https://api.unsplash.com/search/photos?query=${query}&client_id=${API_KEY}&per_page=15&orientation=landscape&page=${page}`
           )
         ).data;
-
+        setImages((prev) => [...prev, ...results]);
+        setPerPage(Math.ceil(total / 15));
         if (!results.length) {
           ///maybe it should be images.length
           return setIsEmpty(true);
         }
-        setImages((prev) => [...prev, ...results]);
-        setPerPage(Math.ceil(total / 15));
+        setIsVisible(page < total_pages); //btn
       } catch (error) {
         setError(error);
       } finally {
@@ -45,13 +56,55 @@ function App() {
     setQuery(value);
     setPage(1);
     setImages([]);
+    setError(null);
     setIsEmpty(false);
+    setIsVisible(false); //btn
   };
+
+  const onLoadMore = () => {
+    setPage((perPage) => perPage + 1);
+  };
+  const openModal = (src, alt, likes, user) => {
+    setModalIsOpen(true);
+    setModalAlt(alt);
+    setModalSrc(src);
+    setModalLikes(likes);
+    setModalUser(user);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+    setModalAlt("");
+    setModalSrc("");
+    setModalLikes(null);
+    setModalUser(null);
+  };
+
   return (
     <>
-      <SearchBar onSubmit={onHandleSubmit} />
-      {error && <p>Error: {error.message}</p>}
-      <ImageGallery results={images} />
+      <header>
+        <Toaster position="top-right" reverseOrder={false} />
+        <SearchBar onSubmit={onHandleSubmit} />
+      </header>
+      {error ? (
+        <ErrorMessage message={error.message} />
+      ) : (
+        <ImageGallery results={images} openModal={openModal} />
+      )}
+
+      {isVisible && (
+        <LoadMoreBtn onClick={onLoadMore} disabled={isLoading}>
+          {isLoading ? <Loader /> : "Load More"}
+        </LoadMoreBtn>
+      )}
+      <ImageModal
+        modalIsOpen={modalIsOpen}
+        closeModal={closeModal}
+        src={modalSrc}
+        alt={modalAlt}
+        likes={modalLikes}
+        user={modalUser}
+      />
     </>
   );
 }
