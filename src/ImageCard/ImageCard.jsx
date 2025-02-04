@@ -1,8 +1,13 @@
+import s from "./ImageCard.module.css";
+import Emoji from "react-emoji-render";
+
 export default function ImageCard({ description, urls, likes }) {
   return (
     <div>
-      <img src={urls.small} alt={description} />
-      <p>Likes: {likes}</p>
+      <img className={s.imgcard} src={urls.small} alt={description} />
+      <Emoji>
+        <p>Likes: ❤️{likes}</p>
+      </Emoji>
     </div>
   );
 }

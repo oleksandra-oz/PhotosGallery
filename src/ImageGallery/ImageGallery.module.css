@@ -8,3 +8,22 @@
   padding: 0;
   margin: 0;
 }
+
+.gallery li {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* Квадратні блоки */
+  overflow: hidden; /* Запобігає виходу зображень */
+  border-radius: 8px; /* Заокруглені кути */
+}
+
+@media (max-width: 768px) {
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
