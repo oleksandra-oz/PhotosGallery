@@ -5,7 +5,7 @@
   text-align: center;
 }
 header {
-  position: fixed; /* Фіксує заголовок зверху */
+  position: fixed; /* Фікс заголовок зверху */
   top: 0; /* Закріплює його на вершині */
   left: 0;
   width: 100%; /* Розтягує на всю ширину */
